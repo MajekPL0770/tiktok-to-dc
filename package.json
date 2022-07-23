@@ -1,0 +1,16 @@
+{
+  "name": "tiktok-to-discord",
+  "version": "1.0.0",
+  "description": "Auto upload tiktoks from link on discord channel",
+  "main": "main.js",
+  "scripts": {
+    "start": "node mian.js"
+  },
+  "author": "! Majuś#1337",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "social_media_downloader": "^1.0.6"
+  }
+}
