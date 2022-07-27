@@ -8,7 +8,7 @@ const client = new Client({});
 client.once("ready", () => {
   console.log("Ready!");
   client.user
-    .setActivity("1TP kogz klasa xD", { type: "PLAYING" }) //PLAYING, STREAMING, LISTENING, WATCHING, CUSTOM_STATUS
+    .setActivity("! Majuś#1337", { type: "PLAYING" }) //PLAYING, STREAMING, LISTENING, WATCHING, CUSTOM_STATUS
     .then((presence) =>
       console.log(`Activity set to: PLAYING ${presence.activities[0].name}`)
     )
