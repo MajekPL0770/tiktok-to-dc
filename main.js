@@ -7,6 +7,12 @@ const client = new Client({});
 
 client.once("ready", () => {
   console.log("Ready!");
+  client.user
+    .setActivity("1TP kogz klasa xD", { type: "PLAYING" }) //PLAYING, STREAMING, LISTENING, WATCHING, CUSTOM_STATUS
+    .then((presence) =>
+      console.log(`Activity set to: PLAYING ${presence.activities[0].name}`)
+    )
+    .catch(console.error);
 });
 
 client.on("message", async (message) => {
@@ -22,17 +28,27 @@ client.on("message", async (message) => {
       response.pipe(file);
       file.on("finish", () => {
         file.close();
-        message.channel.send("download completed, uploading...");
-        message.channel
-          .send({
-            files: ["tiktoks/" + message.author.id + ".mp4"],
-          })
-          .then((message) => {
-            fs.rm("tiktoks/" + message.author.id + ".mp4");
-          });
+        if (
+          fs.statSync("tiktoks/" + message.author.id + ".mp4").size /
+            (1024 * 1024) <
+          8
+        ) {
+          message.channel.send("download completed, uploading...");
+          message.channel
+            .send({
+              files: ["tiktoks/" + message.author.id + ".mp4"],
+            })
+            .then((message) => {
+              fs.rm("tiktoks/" + message.author.id + ".mp4", () => {});
+            });
+        } else {
+          message.channel.send("file to large :C");
+        }
       });
     });
   }
 });
 
-client.login("TOKEN HEAR");
+client.login(
+  "TOKEN HERE"
+);
